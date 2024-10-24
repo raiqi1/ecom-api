@@ -142,6 +142,11 @@ io.on("connection", (soc) => {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+//  test api jika server berjalan 
+
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
 
 app.use("/api", require("./routes/chatRoutes"));
 
