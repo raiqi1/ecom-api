@@ -7,6 +7,31 @@ const cloudinary = require("cloudinary").v2;
 const { responseReturn } = require("../utiles/response");
 const { createToken } = require("../utiles/tokenCreate");
 class authControllers {
+  admin_register = async (req, res) => {
+    const { name, email, password } = req.body;
+    try {
+      // Buat admin terlebih dahulu
+      const admin = await adminModel.create({
+        name,
+        email,
+        password: await bcrpty.hash(password, 10),
+      });
+
+      // Setelah admin dibuat, buat token
+      const token = await createToken({ id: admin.id, role: admin.role });
+
+      // Set cookie setelah token berhasil dibuat
+      res.cookie("accessToken", token, {
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 hari
+      });
+
+      // Return response
+      responseReturn(res, 201, { token, message: "Register success" });
+    } catch (error) {
+      responseReturn(res, 500, { error: error.message });
+    }
+  };
+
   admin_login = async (req, res) => {
     const { email, password } = req.body;
     try {
