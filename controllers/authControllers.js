@@ -45,6 +45,9 @@ class authControllers {
           });
           res.cookie("accessToken", token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+            secure : true ,
+            sameSite : "none",
           });
           responseReturn(res, 200, { token, message: "Login success" });
         } else {
