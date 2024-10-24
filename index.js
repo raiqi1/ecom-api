@@ -17,7 +17,7 @@ app.use(
         ? [
             process.env.client_customer_production_url,
             process.env.client_admin_production_url,
-            "http://localhost:3000"
+            "http://localhost:3000",
           ]
         : ["http://localhost:3000", "http://localhost:3001"],
     credentials: true,
@@ -26,14 +26,8 @@ app.use(
 
 const io = socket(server, {
   cors: {
-    origin:
-      process.env.mode === "pro"
-        ? [
-            process.env.client_customer_production_url,
-            process.env.client_admin_production_url,
-            "http://localhost:3000"
-          ]
-        : ["http://localhost:3000", "http://localhost:3001"],
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
@@ -144,7 +138,7 @@ io.on("connection", (soc) => {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-//  test api jika server berjalan 
+//  test api jika server berjalan
 
 app.get("/", (req, res) => {
   res.send("Server is running");
