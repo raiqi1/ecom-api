@@ -17,6 +17,7 @@ app.use(
         ? [
             process.env.client_customer_production_url,
             process.env.client_admin_production_url,
+            "http://localhost:3000"
           ]
         : ["http://localhost:3000", "http://localhost:3001"],
     credentials: true,
