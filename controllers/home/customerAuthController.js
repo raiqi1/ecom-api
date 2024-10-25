@@ -76,9 +76,9 @@ class customerAuthController {
   customer_logout = async (req, res) => {
     res.cookie("customerToken", "", {
       expires: new Date(Date.now()),
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
     });
     responseReturn(res, 200, { message: "Logout success" });
   };
