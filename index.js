@@ -12,18 +12,10 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin:
-      process.env.mode === "pro"
-        ? [
-            process.env.client_customer_production_url,
-            process.env.client_admin_production_url,
-            "http://localhost:3000"
-          ]
-        : ["http://localhost:3000", "http://localhost:3001"],
+    origin: "https://dashboard-seller-admin.vercel.app",
     credentials: true,
   })
 );
-
 
 const io = socket(server, {
   cors: {
@@ -32,7 +24,7 @@ const io = socket(server, {
         ? [
             process.env.client_customer_production_url,
             process.env.client_admin_production_url,
-            "http://localhost:3000"
+            "http://localhost:3000",
           ]
         : ["http://localhost:3000", "http://localhost:3001"],
     methods: ["GET", "POST"],
@@ -146,7 +138,7 @@ io.on("connection", (soc) => {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-//  test api jika server berjalan 
+//  test api jika server berjalan
 
 app.get("/", (req, res) => {
   res.send("Server is running");
