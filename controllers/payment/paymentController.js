@@ -25,8 +25,8 @@ class paymentController {
 
         const accountLink = await stripe.accountLinks.create({
           account: account.id,
-          refresh_url: "https://dashboard-seller-admin.vercel.app/refresh",
-          return_url: `https://dashboard-seller-admin.vercel.app/success?activeCode=${uid}`,
+          refresh_url: "https://toko-client.vercel.app/refresh",
+          return_url: `https://toko-client.vercel.app/success?activeCode=${uid}`,
           type: "account_onboarding",
         });
         await striptModel.create({
@@ -40,8 +40,8 @@ class paymentController {
 
         const accountLink = await stripe.accountLinks.create({
           account: account.id,
-          refresh_url: "https://dashboard-seller-admin.vercel.app/refresh",
-          return_url: `https://dashboard-seller-admin.vercel.app/success?activeCode=${uid}`,
+          refresh_url: "https://toko-client.vercel.app/refresh",
+          return_url: `https://toko-client.vercel.app/success?activeCode=${uid}`,
           type: "account_onboarding",
         });
         await striptModel.create({

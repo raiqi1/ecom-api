@@ -12,7 +12,7 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: ["https://dashboard-seller-admin.vercel.app", "http://localhost:3000"],
+    origin: ["https://toko-client.vercel.app","https://dashboard-seller-admin.vercel.app", "http://localhost:3000"],
     credentials: true,
   })
 );
