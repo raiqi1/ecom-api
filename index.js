@@ -12,22 +12,22 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: ["https://toko-client.vercel.app","https://dashboard-seller-admin.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://toko-client.vercel.app",
+      "https://dashboard-seller-admin.vercel.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
 
 const io = socket(server, {
   cors: {
-    origin:
-      process.env.mode === "pro"
-        ? [
-            process.env.client_customer_production_url,
-            process.env.client_admin_production_url,
-            "http://localhost:3000",
-          ]
-        : ["http://localhost:3000", "http://localhost:3001"],
-    methods: ["GET", "POST"],
+    origin: [
+      "https://toko-client.vercel.app",
+      "https://dashboard-seller-admin.vercel.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
   },
 });
